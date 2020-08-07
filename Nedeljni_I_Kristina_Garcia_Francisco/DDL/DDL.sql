@@ -1,12 +1,15 @@
 -- Dropping the tables before recreating the database in the order depending how the foreign keys are placed.
+IF OBJECT_ID('tblProjectEmployee', 'U') IS NOT NULL DROP TABLE tblProjectEmployee;
+IF OBJECT_ID('tblProjectManager', 'U') IS NOT NULL DROP TABLE tblProjectManager;
+IF OBJECT_ID('tblReport', 'U') IS NOT NULL DROP TABLE tblReport;
 IF OBJECT_ID('tblProject', 'U') IS NOT NULL DROP TABLE tblProject;
-IF OBJECT_ID('tblWorker', 'U') IS NOT NULL DROP TABLE tblWorker;
+IF OBJECT_ID('tblEmployee', 'U') IS NOT NULL DROP TABLE tblEmployee;
 IF OBJECT_ID('tblManager', 'U') IS NOT NULL DROP TABLE tblManager;
 IF OBJECT_ID('tblAdmin', 'U') IS NOT NULL DROP TABLE tblAdmin;
 IF OBJECT_ID('tblUser', 'U') IS NOT NULL DROP TABLE tblUser;
 IF OBJECT_ID('tblSector', 'U') IS NOT NULL DROP TABLE tblSector;
 IF OBJECT_ID('tblPosition', 'U') IS NOT NULL DROP TABLE tblPosition;
-if OBJECT_ID('vwWorker','v') IS NOT NULL DROP VIEW vwWorker;
+if OBJECT_ID('vwEmployee','v') IS NOT NULL DROP VIEW vwEmployee;
 if OBJECT_ID('vwAdmin','v') IS NOT NULL DROP VIEW vwAdmin;
 if OBJECT_ID('vwManager','v') IS NOT NULL DROP VIEW vwManager;
 
@@ -43,17 +46,6 @@ CREATE TABLE tblUser(
 );
 
 USE CompanyDB
-CREATE TABLE tblWorker (
-	WorkerID INT IDENTITY(1,1) PRIMARY KEY		NOT NULL,
-	YearsOfService INT DEFAULT 0				NOT NULL,
-	Salary VARCHAR (40),
-	EducationDegree VARCHAR (3)					NOT NULL,
-	UserID INT FOREIGN KEY REFERENCES tblUser(UserID) NOT NULL,
-	SectorID INT FOREIGN KEY REFERENCES tblSector(SectorID) NOT NULL,
-	PositionID INT FOREIGN KEY REFERENCES tblPosition(PositionID),
-);
-
-USE CompanyDB
 CREATE TABLE tblManager (
 	ManagerID INT IDENTITY(1,1) PRIMARY KEY		NOT NULL,
 	Email VARCHAR (40)							NOT NULL,
@@ -63,6 +55,18 @@ CREATE TABLE tblManager (
 	Salary VARCHAR (40),
 	OfficeNumber VARCHAR (20),
 	UserID INT FOREIGN KEY REFERENCES tblUser(UserID) NOT NULL,
+);
+
+USE CompanyDB
+CREATE TABLE tblEmployee (
+	EmployeeID INT IDENTITY(1,1) PRIMARY KEY		NOT NULL,
+	YearsOfService INT DEFAULT 0					NOT NULL,
+	Salary VARCHAR (40),
+	EducationDegree VARCHAR (3)						NOT NULL,
+	UserID INT FOREIGN KEY REFERENCES tblUser(UserID) NOT NULL,
+	ManagerID INT FOREIGN KEY REFERENCES tblManager(ManagerID) NOT NULL,
+	SectorID INT FOREIGN KEY REFERENCES tblSector(SectorID) NOT NULL,
+	PositionID INT FOREIGN KEY REFERENCES tblPosition(PositionID),
 );
 
 USE CompanyDB
@@ -85,16 +89,37 @@ CREATE TABLE tblProject (
 	ProjectDeadline DATE						NOT NULL,
 	HourlyRate INT								NOT NULL,
 	Realisation CHAR DEFAULT 0					NOT NULL,
+);
+
+USE CompanyDB
+CREATE TABLE tblProjectManager (
+	ProjectID INT FOREIGN KEY REFERENCES tblProject(ProjectID) NOT NULL,
 	ManagerID INT FOREIGN KEY REFERENCES tblManager(ManagerID) NOT NULL,
 );
 
+USE CompanyDB
+CREATE TABLE tblProjectEmployee (
+	ProjectID INT FOREIGN KEY REFERENCES tblProject(ProjectID) NOT NULL,
+	EmployeeID INT FOREIGN KEY REFERENCES tblEmployee(EmployeeID) NOT NULL,
+);
+
+USE CompanyDB
+CREATE TABLE tblReport (
+	ReportID INT IDENTITY(1,1) PRIMARY KEY		NOT NULL,
+	ProjectClientName VARCHAR (60)				NOT NULL,
+	ReportDate DATE								NOT NULL,
+	WorkDescription VARCHAR (200)				NOT NULL,
+	TotalHours INT								NOT NULL,
+	EmployeeID INT FOREIGN KEY REFERENCES tblEmployee(EmployeeID) NOT NULL,
+);
+
 GO
-CREATE VIEW vwWorker AS
+CREATE VIEW vwEmployee AS
 	SELECT	tblUser.*, 
-			tblWorker.YearsOfService, tblWorker.Salary, tblWorker.EducationDegree, tblWorker.SectorID, 
-			tblWorker.PositionID, tblWorker.WorkerID 
-	FROM	tblUser, tblWorker
-	WHERE	tblUser.UserID = tblWorker.UserID
+			tblEmployee.YearsOfService, tblEmployee.Salary, tblEmployee.EducationDegree, tblEmployee.SectorID, 
+			tblEmployee.PositionID, tblEmployee.ManagerID, tblEmployee.EmployeeID 
+	FROM	tblUser, tblEmployee
+	WHERE	tblUser.UserID = tblEmployee.UserID
 
 GO
 CREATE VIEW vwManager AS

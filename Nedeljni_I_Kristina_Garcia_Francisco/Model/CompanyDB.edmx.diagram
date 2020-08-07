@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="de0799c6055a4292a573232e861b9418" Name="Diagram1">
+        <EntityTypeShape EntityType="CompanyDBModel.tblAdmin" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDBModel.tblEmployee" Width="1.5" PointX="3.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDBModel.tblManager" Width="1.5" PointX="3.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDBModel.tblPosition" Width="1.5" PointX="3.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDBModel.tblProject" Width="1.5" PointX="9.875" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDBModel.tblReport" Width="1.5" PointX="7.125" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDBModel.tblSector" Width="1.5" PointX="0.625" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDBModel.tblUser" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDBModel.vwAdmin" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDBModel.vwEmployee" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDBModel.vwManager" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDBModel.vwWorker" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblAdmin__UserID__7C104AB9" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblEmploy__Manag__774B959C" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblEmploy__Posit__7933DE0E" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblEmploy__Secto__783FB9D5" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblEmploy__UserI__76577163" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblReport__Emplo__0781FD65" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblManage__UserI__7286E07F" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.tblProjectEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.tblProjectManager" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
