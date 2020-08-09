@@ -270,13 +270,20 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco
                         //TODO remove when method to create sectors is made
                         if (employee.SectorID == 0)
                         {
-                            tblSector sec = new tblSector
+                            if (GetAllSectors().Count == 0)
                             {
-                                SectorName = "Default",
-                                SectorDescription = "Default"
-                            };
-                            AddSector(sec);
-                            employee.SectorID = sec.SectorID;
+                                tblSector sec = new tblSector
+                                {
+                                    SectorName = "Default",
+                                    SectorDescription = "Default"
+                                };
+                                AddSector(sec);
+                                employee.SectorID = sec.SectorID;
+                            }
+                            else
+                            {
+                                employee.SectorID = GetAllSectors()[0].SectorID;
+                            }                           
                         }
 
                         tblEmployee newEmployee = new tblEmployee

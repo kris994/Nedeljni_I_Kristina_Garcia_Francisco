@@ -15,7 +15,8 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.Model
             "JMBG",
             "EducationDegree",
             "Username",
-            "MarriageStatus"
+            "MarriageStatus",
+            "Sector"
         };
 
         /// <summary>
