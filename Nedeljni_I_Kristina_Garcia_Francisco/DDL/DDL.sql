@@ -50,7 +50,7 @@ CREATE TABLE tblManager (
 	ManagerID INT IDENTITY(1,1) PRIMARY KEY		NOT NULL,
 	Email VARCHAR (40)							NOT NULL,
 	ReservedPassword VARCHAR (40)				NOT NULL,
-	LevelOfResponsibility	CHAR,
+	LevelOfResponsibility CHAR,
 	SuccessfulProjects INT DEFAULT 0,
 	Salary VARCHAR (40),
 	OfficeNumber VARCHAR (20),
