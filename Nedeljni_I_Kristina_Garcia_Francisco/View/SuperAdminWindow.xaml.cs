@@ -4,14 +4,14 @@ using System.Windows;
 namespace Nedeljni_I_Kristina_Garcia_Francisco.View
 {
     /// <summary>
-    /// Interaction logic for ManagerWindow.xaml
+    /// Interaction logic for SuperAdminWindow.xaml
     /// </summary>
-    public partial class ManagerWindow : Window
+    public partial class SuperAdminWindow : Window
     {
-        public ManagerWindow()
+        public SuperAdminWindow()
         {
             InitializeComponent();
-            this.DataContext = new ManagerViewModel(this);
+            this.DataContext = new SuperAdminViewModel(this);
         }
     }
 }

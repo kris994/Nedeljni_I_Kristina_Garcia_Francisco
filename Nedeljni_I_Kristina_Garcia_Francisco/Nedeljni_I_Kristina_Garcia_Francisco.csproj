@@ -69,6 +69,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Helper\ManagerNameConverter.cs" />
+    <Compile Include="Helper\PositionNameConverter.cs" />
+    <Compile Include="Helper\RadioButtonConverter.cs" />
+    <Compile Include="Helper\SectorNameConverter.cs" />
+    <Compile Include="Helper\Validations.cs" />
+    <Compile Include="Model\Admin.cs" />
     <Compile Include="Model\CompanyDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,7 +90,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CompanyDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\LoggedUser.cs" />
+    <Compile Include="Model\Manager.cs" />
     <Compile Include="Model\tblAdmin.cs">
       <DependentUpon>CompanyDB.tt</DependentUpon>
     </Compile>
@@ -98,6 +106,9 @@
       <DependentUpon>CompanyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tblProject.cs">
+      <DependentUpon>CompanyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tblReport.cs">
       <DependentUpon>CompanyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tblSector.cs">
@@ -119,10 +130,24 @@
       <DependentUpon>CompanyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Service.cs" />
+    <Compile Include="ViewModel\AddUserViewModel.cs" />
+    <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="View\AddUser.xaml.cs">
-      <DependentUpon>AddUser.xaml</DependentUpon>
+    <Compile Include="ViewModel\ManagerViewModel.cs" />
+    <Compile Include="ViewModel\SuperAdminViewModel.cs" />
+    <Compile Include="View\AddAdmin.xaml.cs">
+      <DependentUpon>AddAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddEmployee.xaml.cs">
+      <DependentUpon>AddEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddManager.xaml.cs">
+      <DependentUpon>AddManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EmployeeWindow.xaml.cs">
       <DependentUpon>EmployeeWindow.xaml</DependentUpon>
@@ -132,6 +157,9 @@
     </Compile>
     <Compile Include="View\ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SuperAdminWindow.xaml.cs">
+      <DependentUpon>SuperAdminWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -164,12 +192,25 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\password.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\AddUser.xaml">
+    <Page Include="View\AddAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SuperAdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
