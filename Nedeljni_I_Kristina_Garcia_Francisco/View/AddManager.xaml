@@ -3,11 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Nedeljni_I_Kristina_Garcia_Francisco.View"
         xmlns:c="clr-namespace:Nedeljni_I_Kristina_Garcia_Francisco.Helper"
         xmlns:vm="clr-namespace:Nedeljni_I_Kristina_Garcia_Francisco.Model" 
         mc:Ignorable="d"
-        Title="AddManager" Height="500" Width="350" Background="#5BCED0">
+        Title="Add Manager" Height="500" Width="350">
     <Window.Resources>
         <c:RadioButtonConverter x:Key="radioButtonConverter" />
         <vm:vwManager x:Key="data"/>
@@ -36,7 +37,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="6"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="6"/>
             <RowDefinition Height="auto"/>
@@ -107,14 +108,15 @@
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="9">
             <RadioButton  GroupName="gender" Width="65" Name="cbN" Content="Other" IsChecked="{Binding Manager.Gender, 
                 Converter={StaticResource ResourceKey=radioButtonConverter}, ConverterParameter=N, UpdateSourceTrigger=PropertyChanged}"></RadioButton>
-            <RadioButton  GroupName="gender" Width="80" Name="cbX" Content="Undeclared" IsChecked="{Binding Manager.Gender, 
+            <RadioButton  GroupName="gender" Width="83" Name="cbX" Content="Undeclared" IsChecked="{Binding Manager.Gender, 
                 Converter={StaticResource ResourceKey=radioButtonConverter}, ConverterParameter=X, UpdateSourceTrigger=PropertyChanged}"></RadioButton>
         </StackPanel>
         <TextBox Grid.Column="3" Grid.Row="11" Name="txtResidence" Height="20" Width="150" Style="{StaticResource textBoxInError}"
                  Text="{Binding Manager.Residence, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
         <ComboBox 
-                Grid.Column="3" Grid.Row="13" Name="cmbMarriageStatus" Height="20" Width="150" Text="{Binding Manager.MarriageStatus, UpdateSourceTrigger=PropertyChanged}"
-                IsEditable="True" SelectedItem="{Binding Manager.MarriageStatus, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                materialDesign:HintAssist.Hint="Marriage Stats"
+                Grid.Column="3" Grid.Row="13" Name="cmbMarriageStatus" Height="27" Width="150" SelectedValuePath="Content"
+                IsEditable="False" SelectedValue="{Binding Manager.MarriageStatus, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
             <ComboBoxItem Content="Unmarried"></ComboBoxItem>
             <ComboBoxItem Content="Married"></ComboBoxItem>
             <ComboBoxItem Content="Divorced"></ComboBoxItem>
@@ -180,7 +182,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Grid.Column="3" Grid.Row="29" Name="btnCancel" Content="Cancel" Height="20" Width="70" HorizontalAlignment="Right"
-                Command="{Binding Cancel, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Column="3" Grid.Row="29" Name="btnCancel" Content="Cancel" Height="20" Width="70" HorizontalAlignment="Right" FontSize="11"
+                Command="{Binding Cancel, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>

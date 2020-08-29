@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f1b3d8316c1a437581283668afdb9add" Name="Diagram1">
+      <Diagram DiagramId="885e3b140262417f8cedc07cf95c6186" Name="Diagram1">
         <EntityTypeShape EntityType="CompanyDBModel.tblAdmin" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyDBModel.tblEmployee" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyDBModel.tblManager" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
@@ -17,13 +17,13 @@
         <EntityTypeShape EntityType="CompanyDBModel.vwEmployee" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyDBModel.vwManager" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyDBModel.vwWorker" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="CompanyDBModel.FK__tblAdmin__UserID__7C104AB9" ManuallyRouted="false" />
-        <AssociationConnector Association="CompanyDBModel.FK__tblEmploy__Manag__774B959C" ManuallyRouted="false" />
-        <AssociationConnector Association="CompanyDBModel.FK__tblEmploy__Posit__7933DE0E" ManuallyRouted="false" />
-        <AssociationConnector Association="CompanyDBModel.FK__tblEmploy__Secto__783FB9D5" ManuallyRouted="false" />
-        <AssociationConnector Association="CompanyDBModel.FK__tblEmploy__UserI__76577163" ManuallyRouted="false" />
-        <AssociationConnector Association="CompanyDBModel.FK__tblReport__Emplo__0781FD65" ManuallyRouted="false" />
-        <AssociationConnector Association="CompanyDBModel.FK__tblManage__UserI__7286E07F" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblAdmin__UserID__785FB566" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblEmploy__Manag__739B0049" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblEmploy__Posit__758348BB" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblEmploy__Secto__748F2482" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblEmploy__UserI__72A6DC10" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblReport__Emplo__03D16812" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyDBModel.FK__tblManage__UserI__6ED64B2C" ManuallyRouted="false" />
         <AssociationConnector Association="CompanyDBModel.tblProjectEmployee" ManuallyRouted="false" />
         <AssociationConnector Association="CompanyDBModel.tblProjectManager" ManuallyRouted="false" />
       </Diagram>

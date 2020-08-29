@@ -24,15 +24,15 @@
                                 <Setter Property="Button.IsEnabled" Value="false" />
                             </DataTrigger>
 
-                            <DataTrigger Binding="{Binding ElementName=txtPassword, Path=Password}" Value="">
+                            <DataTrigger Binding="{Binding ElementName=passwordBox, Path=Password}" Value="">
                                 <Setter Property="Button.IsEnabled" Value="false" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
             </Button>
-            <TextBlock>                                
-                <Hyperlink Command="{Binding AddNewManager, UpdateSourceTrigger=PropertyChanged}" Foreground="White">Register as a Manager</Hyperlink>
+            <TextBlock Visibility="{Binding AddManagerVisible, UpdateSourceTrigger=PropertyChanged}">                                
+                <Hyperlink Command="{Binding ManagerCode, UpdateSourceTrigger=PropertyChanged}" Foreground="White">Register as a Manager</Hyperlink>
             </TextBlock>
             <TextBlock>                                
                 <Hyperlink Command="{Binding AddNewEmployee, UpdateSourceTrigger=PropertyChanged}" Foreground="White">Register as an Employee</Hyperlink>

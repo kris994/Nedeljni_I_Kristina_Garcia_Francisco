@@ -1,8 +1,10 @@
 ﻿using Nedeljni_I_Kristina_Garcia_Francisco.Commands;
+using Nedeljni_I_Kristina_Garcia_Francisco.Helper;
 using Nedeljni_I_Kristina_Garcia_Francisco.Model;
 using Nedeljni_I_Kristina_Garcia_Francisco.View;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,18 +15,46 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.ViewModel
     class LoginViewModel : BaseViewModel
     {
         Login view;
+        EnterCode enterCodeView;
+        FileReadWrite fileReadWrite = new FileReadWrite();
         Service service = new Service();
+        private static bool firstTimeOpened = true;
+        private static int counter = 3;
 
         #region Constructor
+        /// <summary>
+        /// Login Window
+        /// </summary>
+        /// <param name="loginView">Login View</param>
         public LoginViewModel(Login loginView)
         {
             view = loginView;
             user = new tblUser();
+            fileReadWrite.OnNotification += fileReadWrite.GenerateRandomNmuberToFile;
             ManagerList = service.GetAllManagers().ToList();
             EmployeeList = service.GetAllEmployees().ToList();
             AllInfoManagerList = service.GetAllManagersInfo().ToList();
             AllInfoEmployeeList = service.GetAllEmployeesInfo().ToList();
-            UserList = service.GetAllUsers().ToList();           
+            UserList = service.GetAllUsers().ToList();
+            AddManagerVisible = Visibility.Visible;
+
+            // Only generate the number when the app is opened for the first time
+            if (firstTimeOpened == true)
+            {
+                fileReadWrite.Notify();
+                firstTimeOpened = false;
+            }
+        }
+
+        /// <summary>
+        /// Enter Code Window
+        /// </summary>
+        /// <param name="enterCodeOpen">Enter Code view</param>
+        public LoginViewModel(EnterCode enterCodeOpen)
+        {
+            enterCodeView = enterCodeOpen;
+            CodeInfoLabel = "Total amount of tries left: " + counter;
+            user = new tblUser();
         }
         #endregion
 
@@ -43,6 +73,23 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.ViewModel
             {
                 infoLabel = value;
                 OnPropertyChanged("InfoLabel");
+            }
+        }
+
+        /// <summary>
+        /// Code counter into label
+        /// </summary>
+        private string codeInfoLabel;
+        public string CodeInfoLabel
+        {
+            get
+            {
+                return codeInfoLabel;
+            }
+            set
+            {
+                codeInfoLabel = value;
+                OnPropertyChanged("CodeInfoLabel");
             }
         }
 
@@ -147,6 +194,40 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.ViewModel
                 OnPropertyChanged("AllInfoEmployeeList");
             }
         }
+
+        /// <summary>
+        /// Code
+        /// </summary>
+        private string code;
+        public string Code
+        {
+            get
+            {
+                return code;
+            }
+            set
+            {
+                code = value;
+                OnPropertyChanged("Code");
+            }
+        }
+
+        /// <summary>
+        /// AddManager Visibility
+        /// </summary>
+        private Visibility addManagerVisible;
+        public Visibility AddManagerVisible
+        {
+            get
+            {
+                return addManagerVisible;
+            }
+            set
+            {
+                addManagerVisible = value;
+                OnPropertyChanged("AddManagerVisible");
+            }
+        }
         #endregion
 
         #region Commands
@@ -207,49 +288,212 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.ViewModel
         }
 
         /// <summary>
-        /// Command that tries to add a new manager
+        /// Button for entering manager code
         /// </summary>
-        private ICommand addNewManager;
-        public ICommand AddNewManager
+        private ICommand managerCode;
+        public ICommand ManagerCode
         {
             get
             {
-                if (addNewManager == null)
+                if (managerCode == null)
                 {
-                    addNewManager = new RelayCommand(param => AddNewManagerExecute(), param => CanAddNewManagerExecute());
+                    managerCode = new RelayCommand(param => ManagerCodeExecute(), param => CanManagerCodeExecute());
                 }
-                return addNewManager;
+                return managerCode;
             }
         }
 
         /// <summary>
-        /// Executes the add Manager command
+        /// Executes the manager code
         /// </summary>
-        private void AddNewManagerExecute()
+        private void ManagerCodeExecute()
+        {
+            MessageBoxResult dialog = Xceed.Wpf.Toolkit.MessageBox.Show("Are you sure you want to create a manager account?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (dialog == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    enterCodeView = new EnterCode();
+                    enterCodeView.ShowDialog();
+
+                    if (AddUserViewModel.IsUpdateManager == true)
+                    {
+                        InfoLabel = "Created a manager";
+                        ManagerList = service.GetAllManagers().ToList();
+                        AllInfoManagerList = service.GetAllManagersInfo().ToList();
+                        UserList = service.GetAllUsers().ToList();
+                        AddUserViewModel.IsUpdateManager = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+
+        /// <summary>
+        /// Checks if its possible to press the button
+        /// </summary>
+        /// <returns>true</returns>
+        private bool CanManagerCodeExecute()
+        {
+            if (counter > 0)
+            {
+                return true;
+            }
+            else
+            {
+                AddManagerVisible = Visibility.Collapsed;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Command that tries to open manager window
+        /// </summary>
+        private ICommand save;
+        public ICommand Save
+        {
+            get
+            {
+                if (save == null)
+                {
+                    save = new RelayCommand(param => SaveExecute(), param => CanSaveExecute());
+                }
+                return save;
+            }
+        }
+
+        /// <summary>
+        /// Tries the execute the save command
+        /// </summary>
+        private void SaveExecute()
         {
             try
             {
-                AddManager addManager = new AddManager();
-                addManager.ShowDialog();
-                if ((addManager.DataContext as AddUserViewModel).IsUpdateManager == true)
+                int value = fileReadWrite.ReadRandomNumberFIle();
+
+                if (value.ToString() != Code)
                 {
-                    ManagerList = service.GetAllManagers().ToList();
-                    AllInfoManagerList = service.GetAllManagersInfo().ToList();
-                    UserList = service.GetAllUsers().ToList();
-                    InfoLabel = "Created a manager";
+                    counter--;
+                    CodeInfoLabel = "Total amount of tries left: " + counter;
                 }
+                else if (value.ToString() == Code)
+                {
+                    try
+                    {
+                        AddManager addManager = new AddManager();
+                        enterCodeView.Close();
+                        addManager.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+
+                if (counter <= 0)
+                {
+                    enterCodeView.InfoMessage.Height = 60;
+                    CodeInfoLabel = "Cannot create manager account\nplease continue by creating an Employee account.";
+                }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Debug.WriteLine("Exception" + ex.Message.ToString());
             }
         }
 
         /// <summary>
-        /// Checks if its possible to add the new manager
+        /// Checks if its possible to save
+        /// </summary>
+        protected bool CanSaveExecute()
+        {
+            if (counter > 0 && Code != null && Code.Length == 8)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Command that closes the add worker or edit worker window
+        /// </summary>
+        private ICommand cancel;
+        public ICommand Cancel
+        {
+            get
+            {
+                if (cancel == null)
+                {
+                    cancel = new RelayCommand(param => CancelExecute(), param => CanCancelExecute());
+                }
+                return cancel;
+            }
+        }
+
+        /// <summary>
+        /// Executes the close command
+        /// </summary>
+        private void CancelExecute()
+        {
+            enterCodeView.Close();
+        }
+
+        /// <summary>
+        /// Checks if its possible to execute the close command
         /// </summary>
         /// <returns>true</returns>
-        private bool CanAddNewManagerExecute()
+        private bool CanCancelExecute()
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Exit button
+        /// </summary>
+        private ICommand exit;
+        public ICommand Exit
+        {
+            get
+            {
+                if (exit == null)
+                {
+                    exit = new RelayCommand(param => ExitExecute(), param => CanExitExecute());
+                }
+                return exit;
+            }
+        }
+
+        /// <summary>
+        /// Exits the current window
+        /// </summary>
+        private void ExitExecute()
+        {
+            MessageBoxResult dialog = Xceed.Wpf.Toolkit.MessageBox.Show("Are you sure you want to stop?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (dialog == MessageBoxResult.Yes)
+            {
+                enterCodeView.Close();
+            }
+        }
+
+        /// <summary>
+        /// Checks if its possible to press the button
+        /// </summary>
+        /// <returns></returns>
+        private bool CanExitExecute()
         {
             return true;
         }
@@ -290,7 +534,7 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.ViewModel
             {
                 for (int i = 0; i < UserList.Count; i++)
                 {
-                    if (User.Username == UserList[i].Username && password == UserList[i].UserPassword)
+                    if (User.Username == UserList[i].Username && PasswordHasher.Verify(password, UserList[i].UserPassword) == true)
                     {
                         LoggedUser.CurrentUser = new tblUser
                         {
@@ -344,7 +588,6 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.ViewModel
 
                 if (found == false)
                 {
-
                     InfoLabel = "Wrong Username or Password";
                 }
             }

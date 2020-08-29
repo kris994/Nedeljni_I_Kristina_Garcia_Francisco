@@ -13,5 +13,16 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.View
             InitializeComponent();
             this.DataContext = new AdminViewModel(this);
         }
+
+        /// <summary>
+        /// Closes the Window and opens the Login window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void DataWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+        }
     }
 }

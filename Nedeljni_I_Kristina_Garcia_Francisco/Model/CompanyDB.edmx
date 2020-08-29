@@ -114,7 +114,7 @@ warning 6002: The table/view 'CompanyDB.dbo.tblProjectManager' does not have a p
           <Property Name="Residence" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="MarriageStatus" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="UserPassword" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="UserPassword" Type="char" MaxLength="1000" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CompanyDB.dbo.vwAdmin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -141,7 +141,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwAdmin' does not have a primary key
           <Property Name="Residence" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="MarriageStatus" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="UserPassword" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="UserPassword" Type="char" MaxLength="1000" Nullable="false" />
           <Property Name="ExpirationDate" Type="date" Nullable="false" />
           <Property Name="AdminType" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="AdminID" Type="int" Nullable="false" />
@@ -173,7 +173,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwEmployee' does not have a primary 
           <Property Name="Residence" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="MarriageStatus" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="UserPassword" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="UserPassword" Type="char" MaxLength="1000" Nullable="false" />
           <Property Name="YearsOfService" Type="int" Nullable="false" />
           <Property Name="Salary" Type="varchar" MaxLength="40" />
           <Property Name="EducationDegree" Type="varchar" MaxLength="3" Nullable="false" />
@@ -207,7 +207,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwManager' does not have a primary k
           <Property Name="Residence" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="MarriageStatus" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="UserPassword" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="UserPassword" Type="char" MaxLength="1000" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="ReservedPassword" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="Salary" Type="varchar" MaxLength="40" />
@@ -250,7 +250,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="PositionID" Type="int" />
           <Property Name="WorkerID" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__tblAdmin__UserID__7C104AB9">
+        <Association Name="FK__tblAdmin__UserID__785FB566">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblAdmin" Type="Self.tblAdmin" Multiplicity="*" />
           <ReferentialConstraint>
@@ -262,7 +262,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Manag__774B959C">
+        <Association Name="FK__tblEmploy__Manag__739B0049">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -274,7 +274,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Posit__7933DE0E">
+        <Association Name="FK__tblEmploy__Posit__758348BB">
           <End Role="tblPosition" Type="Self.tblPosition" Multiplicity="0..1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -286,7 +286,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Secto__783FB9D5">
+        <Association Name="FK__tblEmploy__Secto__748F2482">
           <End Role="tblSector" Type="Self.tblSector" Multiplicity="1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -298,7 +298,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__UserI__76577163">
+        <Association Name="FK__tblEmploy__UserI__72A6DC10">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -310,7 +310,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblManage__UserI__7286E07F">
+        <Association Name="FK__tblManage__UserI__6ED64B2C">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="*" />
           <ReferentialConstraint>
@@ -322,7 +322,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblProjec__Emplo__04A590BA">
+        <Association Name="FK__tblProjec__Emplo__00F4FB67">
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="1" />
           <End Role="tblProjectEmployee" Type="Self.tblProjectEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -334,7 +334,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblProjec__Manag__01C9240F">
+        <Association Name="FK__tblProjec__Manag__7E188EBC">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="1" />
           <End Role="tblProjectManager" Type="Self.tblProjectManager" Multiplicity="*" />
           <ReferentialConstraint>
@@ -346,19 +346,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblProjec__Proje__00D4FFD6">
-          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1" />
-          <End Role="tblProjectManager" Type="Self.tblProjectManager" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblProject">
-              <PropertyRef Name="ProjectID" />
-            </Principal>
-            <Dependent Role="tblProjectManager">
-              <PropertyRef Name="ProjectID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tblProjec__Proje__03B16C81">
+        <Association Name="FK__tblProjec__Proje__0000D72E">
           <End Role="tblProject" Type="Self.tblProject" Multiplicity="1" />
           <End Role="tblProjectEmployee" Type="Self.tblProjectEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -370,7 +358,19 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblReport__Emplo__0781FD65">
+        <Association Name="FK__tblProjec__Proje__7D246A83">
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1" />
+          <End Role="tblProjectManager" Type="Self.tblProjectManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="tblProjectManager">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblReport__Emplo__03D16812">
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="1" />
           <End Role="tblReport" Type="Self.tblReport" Multiplicity="*" />
           <ReferentialConstraint>
@@ -478,47 +478,47 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
     [vwWorker].[WorkerID] AS [WorkerID]
     FROM [dbo].[vwWorker] AS [vwWorker]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__tblAdmin__UserID__7C104AB9" Association="Self.FK__tblAdmin__UserID__7C104AB9">
+          <AssociationSet Name="FK__tblAdmin__UserID__785FB566" Association="Self.FK__tblAdmin__UserID__785FB566">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblAdmin" EntitySet="tblAdmin" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Manag__774B959C" Association="Self.FK__tblEmploy__Manag__774B959C">
+          <AssociationSet Name="FK__tblEmploy__Manag__739B0049" Association="Self.FK__tblEmploy__Manag__739B0049">
             <End Role="tblManager" EntitySet="tblManager" />
             <End Role="tblEmployee" EntitySet="tblEmployee" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Posit__7933DE0E" Association="Self.FK__tblEmploy__Posit__7933DE0E">
+          <AssociationSet Name="FK__tblEmploy__Posit__758348BB" Association="Self.FK__tblEmploy__Posit__758348BB">
             <End Role="tblPosition" EntitySet="tblPosition" />
             <End Role="tblEmployee" EntitySet="tblEmployee" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Secto__783FB9D5" Association="Self.FK__tblEmploy__Secto__783FB9D5">
+          <AssociationSet Name="FK__tblEmploy__Secto__748F2482" Association="Self.FK__tblEmploy__Secto__748F2482">
             <End Role="tblSector" EntitySet="tblSector" />
             <End Role="tblEmployee" EntitySet="tblEmployee" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__UserI__76577163" Association="Self.FK__tblEmploy__UserI__76577163">
+          <AssociationSet Name="FK__tblEmploy__UserI__72A6DC10" Association="Self.FK__tblEmploy__UserI__72A6DC10">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblEmployee" EntitySet="tblEmployee" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblManage__UserI__7286E07F" Association="Self.FK__tblManage__UserI__7286E07F">
+          <AssociationSet Name="FK__tblManage__UserI__6ED64B2C" Association="Self.FK__tblManage__UserI__6ED64B2C">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblManager" EntitySet="tblManager" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblProjec__Emplo__04A590BA" Association="Self.FK__tblProjec__Emplo__04A590BA">
+          <AssociationSet Name="FK__tblProjec__Emplo__00F4FB67" Association="Self.FK__tblProjec__Emplo__00F4FB67">
             <End Role="tblEmployee" EntitySet="tblEmployee" />
             <End Role="tblProjectEmployee" EntitySet="tblProjectEmployee" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblProjec__Manag__01C9240F" Association="Self.FK__tblProjec__Manag__01C9240F">
+          <AssociationSet Name="FK__tblProjec__Manag__7E188EBC" Association="Self.FK__tblProjec__Manag__7E188EBC">
             <End Role="tblManager" EntitySet="tblManager" />
             <End Role="tblProjectManager" EntitySet="tblProjectManager" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblProjec__Proje__00D4FFD6" Association="Self.FK__tblProjec__Proje__00D4FFD6">
-            <End Role="tblProject" EntitySet="tblProject" />
-            <End Role="tblProjectManager" EntitySet="tblProjectManager" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblProjec__Proje__03B16C81" Association="Self.FK__tblProjec__Proje__03B16C81">
+          <AssociationSet Name="FK__tblProjec__Proje__0000D72E" Association="Self.FK__tblProjec__Proje__0000D72E">
             <End Role="tblProject" EntitySet="tblProject" />
             <End Role="tblProjectEmployee" EntitySet="tblProjectEmployee" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblReport__Emplo__0781FD65" Association="Self.FK__tblReport__Emplo__0781FD65">
+          <AssociationSet Name="FK__tblProjec__Proje__7D246A83" Association="Self.FK__tblProjec__Proje__7D246A83">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblProjectManager" EntitySet="tblProjectManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblReport__Emplo__03D16812" Association="Self.FK__tblReport__Emplo__03D16812">
             <End Role="tblEmployee" EntitySet="tblEmployee" />
             <End Role="tblReport" EntitySet="tblReport" />
           </AssociationSet>
@@ -536,7 +536,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="AdminType" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblAdmin__UserID__7C104AB9" FromRole="tblAdmin" ToRole="tblUser" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblAdmin__UserID__785FB566" FromRole="tblAdmin" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblEmployee">
           <Key>
@@ -550,11 +550,11 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="ManagerID" Type="Int32" Nullable="false" />
           <Property Name="SectorID" Type="Int32" Nullable="false" />
           <Property Name="PositionID" Type="Int32" />
-          <NavigationProperty Name="tblManager" Relationship="Self.FK__tblEmploy__Manag__774B959C" FromRole="tblEmployee" ToRole="tblManager" />
-          <NavigationProperty Name="tblPosition" Relationship="Self.FK__tblEmploy__Posit__7933DE0E" FromRole="tblEmployee" ToRole="tblPosition" />
-          <NavigationProperty Name="tblSector" Relationship="Self.FK__tblEmploy__Secto__783FB9D5" FromRole="tblEmployee" ToRole="tblSector" />
-          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblEmploy__UserI__76577163" FromRole="tblEmployee" ToRole="tblUser" />
-          <NavigationProperty Name="tblReports" Relationship="Self.FK__tblReport__Emplo__0781FD65" FromRole="tblEmployee" ToRole="tblReport" />
+          <NavigationProperty Name="tblManager" Relationship="Self.FK__tblEmploy__Manag__739B0049" FromRole="tblEmployee" ToRole="tblManager" />
+          <NavigationProperty Name="tblPosition" Relationship="Self.FK__tblEmploy__Posit__758348BB" FromRole="tblEmployee" ToRole="tblPosition" />
+          <NavigationProperty Name="tblSector" Relationship="Self.FK__tblEmploy__Secto__748F2482" FromRole="tblEmployee" ToRole="tblSector" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblEmploy__UserI__72A6DC10" FromRole="tblEmployee" ToRole="tblUser" />
+          <NavigationProperty Name="tblReports" Relationship="Self.FK__tblReport__Emplo__03D16812" FromRole="tblEmployee" ToRole="tblReport" />
           <NavigationProperty Name="tblProjects" Relationship="Self.tblProjectEmployee" FromRole="tblEmployee" ToRole="tblProject" />
         </EntityType>
         <EntityType Name="tblManager">
@@ -569,8 +569,8 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="Salary" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="OfficeNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Manag__774B959C" FromRole="tblManager" ToRole="tblEmployee" />
-          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblManage__UserI__7286E07F" FromRole="tblManager" ToRole="tblUser" />
+          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Manag__739B0049" FromRole="tblManager" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblManage__UserI__6ED64B2C" FromRole="tblManager" ToRole="tblUser" />
           <NavigationProperty Name="tblProjects" Relationship="Self.tblProjectManager" FromRole="tblManager" ToRole="tblProject" />
         </EntityType>
         <EntityType Name="tblPosition">
@@ -580,7 +580,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="PositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PositionName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PositionDescription" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Posit__7933DE0E" FromRole="tblPosition" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Posit__758348BB" FromRole="tblPosition" ToRole="tblEmployee" />
         </EntityType>
         <EntityType Name="tblProject">
           <Key>
@@ -609,7 +609,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="WorkDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TotalHours" Type="Int32" Nullable="false" />
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblEmployee" Relationship="Self.FK__tblReport__Emplo__0781FD65" FromRole="tblReport" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEmployee" Relationship="Self.FK__tblReport__Emplo__03D16812" FromRole="tblReport" ToRole="tblEmployee" />
         </EntityType>
         <EntityType Name="tblSector">
           <Key>
@@ -618,7 +618,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="SectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SectorName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SectorDescription" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Secto__783FB9D5" FromRole="tblSector" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Secto__748F2482" FromRole="tblSector" ToRole="tblEmployee" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -632,10 +632,10 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="Residence" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MarriageStatus" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserPassword" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblAdmins" Relationship="Self.FK__tblAdmin__UserID__7C104AB9" FromRole="tblUser" ToRole="tblAdmin" />
-          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__UserI__76577163" FromRole="tblUser" ToRole="tblEmployee" />
-          <NavigationProperty Name="tblManagers" Relationship="Self.FK__tblManage__UserI__7286E07F" FromRole="tblUser" ToRole="tblManager" />
+          <Property Name="UserPassword" Type="String" MaxLength="1000" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblAdmins" Relationship="Self.FK__tblAdmin__UserID__785FB566" FromRole="tblUser" ToRole="tblAdmin" />
+          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__UserI__72A6DC10" FromRole="tblUser" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblManagers" Relationship="Self.FK__tblManage__UserI__6ED64B2C" FromRole="tblUser" ToRole="tblManager" />
         </EntityType>
         <EntityType Name="vwAdmin">
           <Key>
@@ -660,7 +660,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="Residence" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MarriageStatus" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserPassword" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="1000" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="AdminType" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AdminID" Type="Int32" Nullable="false" />
@@ -690,7 +690,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="Residence" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MarriageStatus" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserPassword" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="1000" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="YearsOfService" Type="Int32" Nullable="false" />
           <Property Name="Salary" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="EducationDegree" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
@@ -722,7 +722,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="Residence" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MarriageStatus" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserPassword" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="1000" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ReservedPassword" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Salary" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
@@ -763,7 +763,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="PositionID" Type="Int32" />
           <Property Name="WorkerID" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FK__tblAdmin__UserID__7C104AB9">
+        <Association Name="FK__tblAdmin__UserID__785FB566">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblAdmin" Type="Self.tblAdmin" Multiplicity="*" />
           <ReferentialConstraint>
@@ -775,7 +775,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Manag__774B959C">
+        <Association Name="FK__tblEmploy__Manag__739B0049">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -787,7 +787,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Posit__7933DE0E">
+        <Association Name="FK__tblEmploy__Posit__758348BB">
           <End Role="tblPosition" Type="Self.tblPosition" Multiplicity="0..1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -799,7 +799,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__Secto__783FB9D5">
+        <Association Name="FK__tblEmploy__Secto__748F2482">
           <End Role="tblSector" Type="Self.tblSector" Multiplicity="1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -811,7 +811,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblEmploy__UserI__76577163">
+        <Association Name="FK__tblEmploy__UserI__72A6DC10">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -823,7 +823,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblReport__Emplo__0781FD65">
+        <Association Name="FK__tblReport__Emplo__03D16812">
           <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="1" />
           <End Role="tblReport" Type="Self.tblReport" Multiplicity="*" />
           <ReferentialConstraint>
@@ -835,7 +835,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblManage__UserI__7286E07F">
+        <Association Name="FK__tblManage__UserI__6ED64B2C">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="*" />
           <ReferentialConstraint>
@@ -868,31 +868,31 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <EntitySet Name="vwEmployees" EntityType="Self.vwEmployee" />
           <EntitySet Name="vwManagers" EntityType="Self.vwManager" />
           <EntitySet Name="vwWorkers" EntityType="Self.vwWorker" />
-          <AssociationSet Name="FK__tblAdmin__UserID__7C104AB9" Association="Self.FK__tblAdmin__UserID__7C104AB9">
+          <AssociationSet Name="FK__tblAdmin__UserID__785FB566" Association="Self.FK__tblAdmin__UserID__785FB566">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblAdmin" EntitySet="tblAdmins" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Manag__774B959C" Association="Self.FK__tblEmploy__Manag__774B959C">
+          <AssociationSet Name="FK__tblEmploy__Manag__739B0049" Association="Self.FK__tblEmploy__Manag__739B0049">
             <End Role="tblManager" EntitySet="tblManagers" />
             <End Role="tblEmployee" EntitySet="tblEmployees" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Posit__7933DE0E" Association="Self.FK__tblEmploy__Posit__7933DE0E">
+          <AssociationSet Name="FK__tblEmploy__Posit__758348BB" Association="Self.FK__tblEmploy__Posit__758348BB">
             <End Role="tblPosition" EntitySet="tblPositions" />
             <End Role="tblEmployee" EntitySet="tblEmployees" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__Secto__783FB9D5" Association="Self.FK__tblEmploy__Secto__783FB9D5">
+          <AssociationSet Name="FK__tblEmploy__Secto__748F2482" Association="Self.FK__tblEmploy__Secto__748F2482">
             <End Role="tblSector" EntitySet="tblSectors" />
             <End Role="tblEmployee" EntitySet="tblEmployees" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblEmploy__UserI__76577163" Association="Self.FK__tblEmploy__UserI__76577163">
+          <AssociationSet Name="FK__tblEmploy__UserI__72A6DC10" Association="Self.FK__tblEmploy__UserI__72A6DC10">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblEmployee" EntitySet="tblEmployees" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblReport__Emplo__0781FD65" Association="Self.FK__tblReport__Emplo__0781FD65">
+          <AssociationSet Name="FK__tblReport__Emplo__03D16812" Association="Self.FK__tblReport__Emplo__03D16812">
             <End Role="tblEmployee" EntitySet="tblEmployees" />
             <End Role="tblReport" EntitySet="tblReports" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblManage__UserI__7286E07F" Association="Self.FK__tblManage__UserI__7286E07F">
+          <AssociationSet Name="FK__tblManage__UserI__6ED64B2C" Association="Self.FK__tblManage__UserI__6ED64B2C">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblManager" EntitySet="tblManagers" />
           </AssociationSet>

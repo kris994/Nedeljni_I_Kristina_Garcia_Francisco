@@ -1,4 +1,5 @@
-﻿using Nedeljni_I_Kristina_Garcia_Francisco.Model;
+﻿using Nedeljni_I_Kristina_Garcia_Francisco.Helper;
+using Nedeljni_I_Kristina_Garcia_Francisco.Model;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -260,7 +261,7 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco
                             Residence = employee.Residence,
                             MarriageStatus = employee.MarriageStatus,
                             Username = employee.Username,
-                            UserPassword = employee.UserPassword
+                            UserPassword = PasswordHasher.Hash(employee.UserPassword)
                         };
 
                         context.tblUsers.Add(newUser);
@@ -314,7 +315,12 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco
                         userToEdit.Residence = employee.Residence;
                         userToEdit.MarriageStatus = employee.MarriageStatus;
                         userToEdit.Username = employee.Username;
-                        userToEdit.UserPassword = employee.UserPassword;
+
+                        // Save only if password changed
+                        if (userToEdit.UserPassword != employee.UserPassword)
+                        {
+                            userToEdit.UserPassword = PasswordHasher.Hash(employee.UserPassword);
+                        }
 
                         userToEdit.UserID = employee.UserID;
 
@@ -372,7 +378,7 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco
                             Residence = manager.Residence,
                             MarriageStatus = manager.MarriageStatus,
                             Username = manager.Username,
-                            UserPassword = manager.UserPassword
+                            UserPassword = PasswordHasher.Hash(manager.UserPassword)
                         };
 
                         context.tblUsers.Add(newUser);
@@ -407,8 +413,6 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco
                         userToEdit.Residence = manager.Residence;
                         userToEdit.MarriageStatus = manager.MarriageStatus;
                         userToEdit.Username = manager.Username;
-                        userToEdit.UserPassword = manager.UserPassword;
-
                         userToEdit.UserID = manager.UserID;
 
                         tblUser userEdit = (from ss in context.tblUsers
@@ -465,7 +469,7 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco
                             Residence = admin.Residence,
                             MarriageStatus = admin.MarriageStatus,
                             Username = admin.Username,
-                            UserPassword = admin.UserPassword
+                            UserPassword = PasswordHasher.Hash(admin.UserPassword)
                         };
 
                         context.tblUsers.Add(newUser);
@@ -496,7 +500,12 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco
                         userToEdit.Residence = admin.Residence;
                         userToEdit.MarriageStatus = admin.MarriageStatus;
                         userToEdit.Username = admin.Username;
-                        userToEdit.UserPassword = admin.UserPassword;
+
+                        // Save only if password changed
+                        if (userToEdit.UserPassword != admin.UserPassword)
+                        {
+                            userToEdit.UserPassword = PasswordHasher.Hash(admin.UserPassword);
+                        }
 
                         userToEdit.UserID = admin.UserID;
 

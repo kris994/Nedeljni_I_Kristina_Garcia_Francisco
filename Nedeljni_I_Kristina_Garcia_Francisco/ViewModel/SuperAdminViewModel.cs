@@ -263,7 +263,6 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.ViewModel
             {
                 Login login = new Login();
                 superAdmin.Close();
-                login.Show();
             }
             catch (Exception ex)
             {

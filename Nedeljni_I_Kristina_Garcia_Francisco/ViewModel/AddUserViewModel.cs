@@ -291,20 +291,9 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.ViewModel
         }
 
         /// <summary>
-        /// Cheks if its possible to execute the add and edit manager commands
+        /// Checks if its possible to execute the add and edit manager commands
         /// </summary>
-        private bool isUpdateManager;
-        public bool IsUpdateManager
-        {
-            get
-            {
-                return isUpdateManager;
-            }
-            set
-            {
-                isUpdateManager = value;
-            }
-        }
+        public static bool IsUpdateManager = false;
 
         /// <summary>
         /// Cheks if its possible to execute the add and edit admin commands

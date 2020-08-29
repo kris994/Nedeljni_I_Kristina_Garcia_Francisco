@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nedeljni_I_Kristina_Garcia_Francisco"
         xmlns:c="clr-namespace:Nedeljni_I_Kristina_Garcia_Francisco.Helper"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Users" Height="auto" MaxHeight="450" Width="auto" MaxWidth="1200">
+        Title="Super Admin" Height="auto" MaxHeight="450" Width="auto" MaxWidth="1200">
     <Window.Resources>
         <c:ManagerNameConverter x:Key="ManagerNameConverter" />
         <c:SectorNameConverter x:Key="SectorNameConverter" />
@@ -21,10 +22,10 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
-            <Button Width="80" Height="20" Name="btnLogoff" Content="Log Off"
-                    Command="{Binding Logoff, UpdateSourceTrigger=PropertyChanged}" Margin="20,4,4,4" FontWeight="Bold"/>
-            <Button Width="80" Height="20" Name="btnAddAdmin" Content="Add Admin"
-                    Command="{Binding AddNewAdmin, UpdateSourceTrigger=PropertyChanged}" Margin="20,4,4,4" FontWeight="Bold"/>
+            <Button Width="80" Height="30" Name="btnLogoff" Content="Log Off"
+                    Command="{Binding Logoff, UpdateSourceTrigger=PropertyChanged}" Margin="20,4,4,4" FontWeight="Bold" FontSize="12"/>
+            <Button Width="120" Height="30" Name="btnAddAdmin" Content="Add Admin"
+                    Command="{Binding AddNewAdmin, UpdateSourceTrigger=PropertyChanged}" Margin="20,4,4,4" FontWeight="Bold" FontSize="12"/>
         </StackPanel>
         <Grid Grid.Column="1" Grid.Row="2" Height="auto" Width="auto">
             <DataGrid Name="DataGridEmployee" ItemsSource="{Binding AllInfoEmployeeList, UpdateSourceTrigger=PropertyChanged}"

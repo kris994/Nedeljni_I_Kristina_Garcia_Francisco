@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nedeljni_I_Kristina_Garcia_Francisco.View"
         xmlns:c="clr-namespace:Nedeljni_I_Kristina_Garcia_Francisco.Helper"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:Nedeljni_I_Kristina_Garcia_Francisco.Model" 
         mc:Ignorable="d"
-        Title="AddManager" Height="500" Width="350" Background="#5BCED0">
+        Title="Add Emplyee" Height="500" Width="375">
     <Window.Resources>
         <c:RadioButtonConverter x:Key="radioButtonConverter" />
         <c:ManagerNameConverter x:Key="ManagerNameConverter" />
@@ -37,7 +38,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="6"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="6"/>
             <RowDefinition Height="auto"/>
@@ -109,14 +110,15 @@
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="9">
             <RadioButton  GroupName="gender" Width="65" Name="cbN" Content="Other" IsChecked="{Binding Employee.Gender, 
                 Converter={StaticResource ResourceKey=radioButtonConverter}, ConverterParameter=N, UpdateSourceTrigger=PropertyChanged}"></RadioButton>
-            <RadioButton  GroupName="gender" Width="80" Name="cbX" Content="Undeclared" IsChecked="{Binding Employee.Gender, 
+            <RadioButton  GroupName="gender" Width="83" Name="cbX" Content="Undeclared" IsChecked="{Binding Employee.Gender, 
                 Converter={StaticResource ResourceKey=radioButtonConverter}, ConverterParameter=X, UpdateSourceTrigger=PropertyChanged}"></RadioButton>
         </StackPanel>
         <TextBox Grid.Column="3" Grid.Row="11" Name="txtResidence" Height="20" Width="150" Style="{StaticResource textBoxInError}"
                  Text="{Binding Employee.Residence, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
         <ComboBox 
-                Grid.Column="3" Grid.Row="13" Name="cmbMarriageStatus" Height="20" Width="150" Text="{Binding Employee.MarriageStatus, UpdateSourceTrigger=PropertyChanged}"
-                IsEditable="True" SelectedItem="{Binding Employee.MarriageStatus, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                materialDesign:HintAssist.Hint="Marriage Stats"
+                Grid.Column="3" Grid.Row="13" Name="cmbMarriageStatus" Height="27" Width="150" SelectedValuePath="Content"
+                IsEditable="False" SelectedValue="{Binding Employee.MarriageStatus, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
             <ComboBoxItem Content="Unmarried"></ComboBoxItem>
             <ComboBoxItem Content="Married"></ComboBoxItem>
             <ComboBoxItem Content="Divorced"></ComboBoxItem>
@@ -125,8 +127,9 @@
                  Text="{Binding Employee.YearsOfService, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  Style="{StaticResource textBoxInError}" PreviewTextInput="NumberValidationTextBox"/>
         <ComboBox 
-                Grid.Column="3" Grid.Row="17" Name="cmbDegree" Height="20" Width="150" Text="{Binding Employee.EducationDegree, UpdateSourceTrigger=PropertyChanged}"
-                IsEditable="True" SelectedItem="{Binding Employee.EducationDegree, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                materialDesign:HintAssist.Hint="Degree level"
+                Grid.Column="3" Grid.Row="17" Name="cmbDegree" Height="27" Width="150" SelectedValuePath="Content"
+                IsEditable="False" SelectedValue="{Binding Employee.EducationDegree, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
             <ComboBoxItem Content="I"></ComboBoxItem>
             <ComboBoxItem Content="II"></ComboBoxItem>
             <ComboBoxItem Content="III"></ComboBoxItem>
@@ -135,16 +138,18 @@
             <ComboBoxItem Content="VI"></ComboBoxItem>
             <ComboBoxItem Content="VII"></ComboBoxItem>
         </ComboBox>
-        <ComboBox Grid.Column="3" Grid.Row="19" Name="cmbManager" Height="20" Width="150" Text="{Binding Manager.FirstName, UpdateSourceTrigger=PropertyChanged, 
-                Converter={StaticResource ResourceKey=ManagerNameConverter}}"
+        <ComboBox Grid.Column="3" Grid.Row="19" Name="cmbManager" Height="27" Width="150" Text="{Binding Manager.FirstName, UpdateSourceTrigger=PropertyChanged, 
+                Converter={StaticResource ResourceKey=ManagerNameConverter}}" materialDesign:HintAssist.Hint="Manager"
                   IsEditable="False" ItemsSource="{Binding AllInfoManagerList, UpdateSourceTrigger=PropertyChanged}"
                  SelectedItem="{Binding Manager, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="FirstName"/>
-        <ComboBox Grid.Column="3" Grid.Row="21" Name="cmbSector" Height="20" Width="150" Text="{Binding Sector.SectorName, UpdateSourceTrigger=PropertyChanged}" 
+        <ComboBox Grid.Column="3" Grid.Row="21" Name="cmbSector" Height="27" Width="150" SelectedValuePath="Content"
+                  materialDesign:HintAssist.Hint="Sector"
                  IsEditable="False" ItemsSource="{Binding SectorList, UpdateSourceTrigger=PropertyChanged}"
-                 SelectedItem="{Binding Sector, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="SectorName"/>
-        <ComboBox Grid.Column="3" Grid.Row="23" Name="cmbPosition" Height="20" Width="150" Text="{Binding Position.PositionName, UpdateSourceTrigger=PropertyChanged}" 
+                 SelectedValue="{Binding Sector, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="SectorName"/>
+        <ComboBox Grid.Column="3" Grid.Row="23" Name="cmbPosition" Height="27" Width="150" SelectedValuePath="Content"
+                  materialDesign:HintAssist.Hint="Position"
                  IsEditable="False" ItemsSource="{Binding PositionList, UpdateSourceTrigger=PropertyChanged}"
-                 SelectedItem="{Binding Position, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PositionName"/>
+                 SelectedValue="{Binding Position, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PositionName"/>
         <TextBox Grid.Column="3" Grid.Row="25" Name="txtUsername" Height="20" Width="150"
                  Text="{Binding Employee.Username, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  Style="{StaticResource textBoxInError}"/>
@@ -188,7 +193,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button Grid.Column="3" Grid.Row="31" Name="btnCancel" Content="Cancel" Height="20" Width="70" HorizontalAlignment="Right"
-                Command="{Binding Cancel, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Column="3" Grid.Row="31" Name="btnCancel" Content="Cancel" Height="20" Width="70" HorizontalAlignment="Right" FontSize="11"
+                Command="{Binding Cancel, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>

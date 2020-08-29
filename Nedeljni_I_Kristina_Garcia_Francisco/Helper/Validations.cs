@@ -37,7 +37,7 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.Helper
         {
             if (degree == null)
             {
-                return "Degree cannot be empty.";
+                return "";
             }
 
             if (degree != "I" && degree != "II" && degree != "III" && degree != "IV" && degree != "V" && degree != "VI" && degree != "VII")
@@ -77,7 +77,7 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.Helper
         {
             if (marriage == null)
             {
-                return "Marriage status cannot be empty.";
+                return "";
             }
 
             if (marriage != "Unmarried" && marriage != "Married" && marriage != "Divorced")
@@ -97,7 +97,7 @@ namespace Nedeljni_I_Kristina_Garcia_Francisco.Helper
         {
             if (type == null)
             {
-                return "Admin type cannot be empty.";
+                return "";
             }
 
             if (type != "Local" && type != "System" && type != "Team")

@@ -42,7 +42,7 @@ CREATE TABLE tblUser(
 	Residence VARCHAR (40)					NOT NULL,
 	MarriageStatus VARCHAR (13)				NOT NULL,
 	Username VARCHAR (40) UNIQUE			NOT NULL,
-	UserPassword VARCHAR (40)				NOT NULL,
+	UserPassword CHAR (1000)				NOT NULL,
 );
 
 USE CompanyDB
